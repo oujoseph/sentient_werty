@@ -1,113 +1,49 @@
 var tessel = require("tessel");
+var wakeup = require("./app/display_module/wake_up_animation");
+var weather = require("./app/forecast_module/weather");
 var backpack = require('backpack-ht16k33').use(tessel.port['B']);
 
-//backpack.on('ready', function() {
-//  backpack.clear();
-//  var bitmap = [
-//    [1,1,1,1,1,1,1,1],
-//    [1,0,0,0,0,0,0,1],
-//    [1,0,0,0,0,0,0,1],
-//    [1,0,0,0,0,0,0,1],
-//    [1,0,0,0,0,0,0,1],
-//    [1,0,0,0,0,0,0,1],
-//    [1,0,0,0,0,0,0,1],
-//    [1,1,1,1,1,1,1,1],
-//  ];
-//  backpack.writeBitmap(bitmap);
-//});
-
-//backpack.clear ( callback(err) );
-
-//setTimeout(function(){
-//    var bitmap = [
-//    [1,1,1,1,1,1,1,1],
-//    [1,1,1,1,1,1,1,1],
-//    [1,1,1,1,1,1,1,1],
-//    [1,1,1,1,1,1,1,1],
-//    [1,1,1,1,1,1,1,1],
-//    [1,1,1,1,1,1,1,1],
-//    [1,1,1,1,1,1,1,1],
-//    [1,1,1,1,1,1,1,1],
-//  ];
-//  backpack.writeBitmap(bitmap);
-//}, 0);
-
-var bitmap = [
-    [0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0],
-];
-var smile = [
-    [0,0,0,0,0,0,0,0],
-    [0,1,0,0,0,0,1,0],
-    [0,1,0,0,0,0,1,0],
-    [0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0],
-    [0,0,1,1,1,1,0,0],
-    [0,0,0,1,1,0,0,0],
-    [0,0,0,0,0,0,0,0],
-];
-var mouth_open = [
-    [0,0,0,0,0,0,0,0],
-    [0,1,0,0,0,0,1,0],
-    [0,1,0,0,0,0,1,0],
-    [0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0],
-    [0,0,1,1,1,1,0,0],
-    [0,0,1,1,1,1,0,0],
-    [0,0,0,1,1,0,0,0],
-];
-var frames = [smile, mouth_open, smile, mouth_open, smile, mouth_open, smile, mouth_open, smile, mouth_open];
-backpack.animate(frames, 500);
-
-//backpack.on('ready', function() {
-//  backpack.clear();
-//  var smile = [
-//    [0,0,0,0,0,0,0,0],
-//    [0,1,0,0,0,0,1,0],
-//    [0,1,0,0,0,0,1,0],
-//    [0,0,0,0,0,0,0,0],
-//    [0,0,0,0,0,0,0,0],
-//    [0,0,1,1,1,1,0,0],
-//    [0,0,0,1,1,0,0,0],
-//    [0,0,0,0,0,0,0,0],
-//  ];
-//  backpack.writeBitmap(bitmap);
-//});
-
-//for(var i =0; i < 7; i++){
-//    for(var j = 0; j < 7; j++){
-//        setInterval(function(){
-//            bitmap[i][j] = 1;
-//            backpack.writeBitmap(bitmap);
-//        },23);
-//    }
-//    
-//}
-
-'use strict';
 const os = require('os');
 const path = require('path');
-const av = require('tessel-av');
- 
-const speaker = new av.Speaker();
- 
 
-var weather = "sunny";
-var lows = 50;
-var highs = 12332.352;
-speaker.say({
-    phrase: "The forecast today is " + weather + ". The temperature is " + lows + " to  " + highs + " degrees.",
-    a: 40,
-    //amplitude (volume)
-    p: 60,
-    //pitch
-    v: 'en-us+f2',
-})
 
-console.log("I'm blinking! (Press CTRL + C to stop)")
+// const av = require('tessel-av');
+// const mic = new av.Microphone();
+
+// mic.monitor(mic.listen());
+
+// setTimeout(() => {
+//   mic.stop();
+// }, 5000);
+
+// .listen() returns a stream...
+
+// var request = require('request')
+
+
+// var headers = {
+//     'Authorization': 'Bearer NI5VLATDYJNNO2RMGBR2WBO6EE27MV65',
+//     'Content-Type': 'audio/wav'
+// };
+
+
+// var options = {
+//     url: 'https://api.wit.ai/speech?v=20160526',
+//     method: 'POST',
+//     headers: headers,
+// };
+
+// function callback(error, response, body) {
+//     if (!error && response.statusCode == 200) {
+//         console.log(body);
+//     }else console.log(error);
+// }
+// console.log("starting mic");
+// mic.listen().pipe(request(options, callback));
+
+// setTimeout(function(){
+// 	mic.stop();
+// 	console.log("stopping mic");
+// }, 2000)
+
+wakeup.wakeUp(weather.weather);

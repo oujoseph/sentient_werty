@@ -1,21 +1,18 @@
 {
-  "name": "tessel",
-  "version": "0.0.0",
-  "description": "Tessel project",
+  "name": "nodeJS",
+  "version": "1.0.0",
+  "description": "N/A",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
-  "repository": "www.github.com/tessel/t2-cli",
-  "keywords": [
-    "Tessel"
-  ],
-  "license": "MIT",
-  "readme": "A bare bones Tessel 2 blinky script.",
+  "author": "",
+  "license": "",
   "dependencies": {
     "backpack-ht16k33": "^0.3.0",
-    "espeak": "0.0.3",
-    "speech-synthesis": "^0.3.2",
+    "bingspeech-api-client": "^2.2.0",
+    "request": "^2.81.0",
     "tessel-av": "^0.19.0"
   }
 }
